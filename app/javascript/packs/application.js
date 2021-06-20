@@ -40,4 +40,3 @@ document.addEventListener("turbolinks:load", () => {
 import "../stylesheets/application"
 
 require("packs/posts")
-require("packs/test_javascripts")
