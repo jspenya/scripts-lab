@@ -1,24 +1,4 @@
-# README
+# Script Lab
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+This is where I try out all of my newly-learned Javascript scripts & libraries! <br/>
+I am using <strong>Rails 6 with Webpacker</strong> (instead of the usual asset pipeline).
