@@ -28,3 +28,13 @@ document.addEventListener("turbolinks:load", () => {
     dateFormat: "Y-m-d"
   })
 })
+
+import "bootstrap"
+document.addEventListener("turbolinks:load", () => {
+  var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+  var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+    return new bootstrap.Tooltip(tooltipTriggerEl)
+  })
+})
+
+import "../stylesheets/application"
