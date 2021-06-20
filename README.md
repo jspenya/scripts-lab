@@ -7,5 +7,6 @@ I am using <strong>Rails 6 with Webpacker (4.0)</strong> (instead of the usual a
 ## What's in the bag?
 - Bootstrap 5
 - jQuery
+- Stimulus JS
 - Intersection observers (to implement soon)
 - .. more to come!
