@@ -1,86 +1,128 @@
-<script>
-  // Add a global error event listener early on in the page load, to help ensure that browsers
-  // which don't support specific functionality still end up displaying a meaningful message.
-  window.addEventListener('error', function(error) {
-    if (ChromeSamples && ChromeSamples.setStatus) {
-      console.error(error);
-      ChromeSamples.setStatus(error.message + ' (Your browser may not support this feature.)');
-      error.preventDefault();
-    }
-  });
-</script>
+<main>
+  <section class="home-intro">
+    <h1>Intersection Observer is pretty useful</h1>
+  </section>
 
-<script>
-  var ChromeSamples = {
-    log: function() {
-      var line = Array.prototype.slice.call(arguments).map(function(argument) {
-        return typeof argument === 'string' ? argument : JSON.stringify(argument);
-      }).join(' ');
+  <div class="home-about">
+    <h2>About us</h2>
+    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
+    <div class="columns">
+      <div class="col fade-in">
+        <h3>Lorem, ipsum.</h3>
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vitae
+          maiores fuga eos provident voluptas perferendis.
+        </p>
+      </div>
+      <div class="col fade-in">
+        <h3>A, illo!</h3>
+        <p>
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+          Voluptatibus minima quo beatae eius blanditiis officiis.
+        </p>
+      </div>
+      <div class="col fade-in">
+        <h3>Repudiandae, error?</h3>
+        <p>
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laborum
+          quasi quis doloribus quia illum laudantium.
+        </p>
+      </div>
+    </div>
+  </div>
 
-      document.querySelector('#log').textContent += line + '\n';
-    },
-
-    clearLog: function() {
-      document.querySelector('#log').textContent = '';
-    },
-
-    setStatus: function(status) {
-      document.querySelector('#status').textContent = status;
-    },
-
-    setContent: function(newContent) {
-      var content = document.querySelector('#content');
-      while(content.hasChildNodes()) {
-        content.removeChild(content.lastChild);
-      }
-      content.appendChild(newContent);
-    }
-  };
-</script>
-
-<h3>Live Output</h3>
-<div id="output" class="output">
-  <div id="content">
-<p>
-  On browsers that support <code>IntersectionObserver</code>, you should see
-  a list that loads additional items as you scroll down.
-</p>
-<div id="scroller">
-  <div id="sentinel"></div>
-</div>
-</div>
-  <div id="status"></div>
-  <pre id="log"></pre>
-</div>
-
-<script>
-/* global IntersectionObserver */
-var scroller = document.querySelector('#scroller');
-var sentinel = document.querySelector('#sentinel');
-var counter = 1;
-
-function loadItems(n) {
-  for (var i = 0; i < n; i++) {
-    var newItem = document.createElement('div');
-    newItem.classList.add('item');
-    newItem.textContent = 'Item ' + counter++;
-    scroller.appendChild(newItem);
-  }
-}
-
-var intersectionObserver = new IntersectionObserver(entries => {
-  // If the browser is busy while scrolling happens, multiple entries can
-  // accumulate between invocations of this callback. As long as any one
-  // of the notifications reports the sentinel within the scrolling viewport,
-  // we add more content.
-  if (entries.some(entry => entry.intersectionRatio > 0)) {
-    loadItems(10);
-    // appendChild will move the existing element, so there is no need to
-    // remove it first.
-    scroller.appendChild(sentinel);
-    loadItems(5);
-    ChromeSamples.setStatus('Loaded up to item ' + counter);
-  }
-});
-intersectionObserver.observe(sentinel);
-</script>
+  <div class="home-more-stuff">
+    <div class="more-stuff-grid">
+    <%# Hello future me. Lazy load images with loading="lazy", make sure to specify width, and height! Also check if img.css max-width:100% and height:auto %>
+    <%# Thank me later %>
+      <img
+        loading="lazy"
+        src="https://unsplash.it/400"
+        alt=""
+        class="slide-in from-left"
+        width="400"
+        height="600"
+      />
+      <p class="slide-in from-right">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis fugit,
+        quae beatae vero sit magni quaerat id ratione. Dolor optio unde amet
+        omnis sapiente neque cumque consequuntur reiciendis deserunt.
+        Dolorem vero exercitationem consequuntur, eligendi cupiditate
+        debitis facilis quibusdam magni. Eveniet.
+      </p>
+    </div>
+    <div class="more-stuff-grid">
+      <p class="slide-in from-left">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis fugit,
+        quae beatae vero sit magni quaerat id ratione. Dolor optio unde amet
+        omnis sapiente neque cumque consequuntur reiciendis deserunt.
+        Dolorem vero exercitationem consequuntur, eligendi cupiditate
+        debitis facilis quibusdam magni. Eveniet.
+      </p>
+      <img
+        loading="lazy"
+        src="https://unsplash.it/401"
+        alt=""
+        class="slide-in from-right"
+        width="400"
+        height="600"
+      />
+    </div>
+    <div class="more-stuff-grid">
+      <img loading="lazy" src="//unsplash.it/400" alt="" class="slide-in from-left" width="400"
+        height="600" />
+      <p class="slide-in from-right">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis fugit,
+        quae beatae vero sit magni quaerat id ratione. Dolor optio unde amet
+        omnis sapiente neque cumque consequuntur reiciendis deserunt.
+        Dolorem vero exercitationem consequuntur, eligendi cupiditate
+        debitis facilis quibusdam magni. Eveniet.
+      </p>
+    </div>
+    <div class="more-stuff-grid">
+      <p class="slide-in from-left">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis fugit,
+        quae beatae vero sit magni quaerat id ratione. Dolor optio unde amet
+        omnis sapiente neque cumque consequuntur reiciendis deserunt.
+        Dolorem vero exercitationem consequuntur, eligendi cupiditate
+        debitis facilis quibusdam magni. Eveniet.
+      </p>
+      <img 
+        loading="lazy"
+        src="https://unsplash.it/401"
+        alt=""
+        class="slide-in from-right"
+        width="400"
+        height="600"
+      />
+    </div>
+    <div class="more-stuff-grid">
+      <img loading="lazy" src="//unsplash.it/400" alt="" class="slide-in from-left" width="400"
+        height="600" />
+      <p class="slide-in from-right">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis fugit,
+        quae beatae vero sit magni quaerat id ratione. Dolor optio unde amet
+        omnis sapiente neque cumque consequuntur reiciendis deserunt.
+        Dolorem vero exercitationem consequuntur, eligendi cupiditate
+        debitis facilis quibusdam magni. Eveniet.
+      </p>
+    </div>
+    <div class="more-stuff-grid">
+      <p class="slide-in from-left">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis fugit,
+        quae beatae vero sit magni quaerat id ratione. Dolor optio unde amet
+        omnis sapiente neque cumque consequuntur reiciendis deserunt.
+        Dolorem vero exercitationem consequuntur, eligendi cupiditate
+        debitis facilis quibusdam magni. Eveniet.
+      </p>
+      <img
+        loading="lazy"
+        src="https://unsplash.it/401"
+        alt=""
+        class="slide-in from-right"
+        width="400"
+        height="600"
+      />
+    </div>
+  </div>
+</main>
