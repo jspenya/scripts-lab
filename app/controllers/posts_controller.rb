@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: %i[ show edit update destroy ]
+  before_action :set_post, only: %i[ show edit update destroy publish]
 
   # GET /posts or /posts.json
   def index
@@ -45,6 +45,10 @@ class PostsController < ApplicationController
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def publish
+    @post.update(published_at: Time.zone.now)
   end
 
   # DELETE /posts/1 or /posts/1.json

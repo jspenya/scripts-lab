@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :posts
+  resources :posts do
+    member do
+      patch :publish
+    end
+  end
 
   root to: 'test_javascripts#index'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
