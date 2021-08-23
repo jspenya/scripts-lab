@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users
+  
   resources :posts do
+    resource :like, module: 'posts'
+    
     member do
       patch :publish
     end
