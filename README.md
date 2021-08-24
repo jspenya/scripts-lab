@@ -10,4 +10,5 @@ I am using <strong>Rails 6 with Webpacker (4.0)</strong> (instead of the usual a
 - Stimulus JS
 - Lazy loading images (using loading="lazy" attribute)
 - Intersection observers (to implement soon)
-- .. more to come!
+- Like feature using AJAX
+- -
