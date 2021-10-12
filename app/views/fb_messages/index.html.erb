@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Fb Messages</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Received</th>
+      <th>Reply</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @fb_messages.each do |fb_message| %>
+      <tr>
+        <td><%= fb_message.received %></td>
+        <td><%= fb_message.reply %></td>
+        <td><%= link_to 'Show', fb_message %></td>
+        <td><%= link_to 'Edit', edit_fb_message_path(fb_message) %></td>
+        <td><%= link_to 'Destroy', fb_message, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Fb Message', new_fb_message_path %>
