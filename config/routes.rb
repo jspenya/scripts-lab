@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   end
 
   get 'callback/index'
-  post 'callback/index' => 'callback#received_data'
+  post '/callback/receive', to: 'callback#received_data'
   get 'callback/received_data'
   # root to: 'callback#index'
 
