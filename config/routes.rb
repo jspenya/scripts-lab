@@ -1,4 +1,9 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
+  root to: 'test_javascripts#index'
+  
+  resources :meetings
   resources :fb_messages
   resources :channel_users
   resources :channels
@@ -20,7 +25,6 @@ Rails.application.routes.draw do
 
   mount Facebook::Messenger::Server, at: "bot"
 
-  root to: 'test_javascripts#index'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   get '/intersection_observers', to: 'test_javascripts#intersection_obs', as: 'intersection'
   get '/coming_soon', to: 'test_javascripts#coming_soon', as: 'coming_soon'
