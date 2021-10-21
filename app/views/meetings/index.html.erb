@@ -1,33 +1,36 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Meetings</h1>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <% unless current_user.meetings.any? %>
+        <%= link_to 'New Meeting', new_meeting_path %>
+      <% else %>
+        <h1>Meetings</h1>
+        <ul class="nav nav-pills nav-fill">
+          <li class="nav-item">
+            <%= link_to '#all-meetings', class: 'nav-link active' do %>
+              All Meetings
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to '#calendar', class: 'nav-link' do %>
+              Meeting Calendar
+            <% end %>
+          </li>
+        </ul>
+        <div id="all-meetings" class="tab-panel">
+          <%= render partial: "all_meetings", locals: { meetings: @meetings } %>
+        </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Start time</th>
-      <th>End time</th>
-      <th>User</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+        <div id="calendar" class="tab-panel">
+          <h2>Meeting Calendar</h2>
+          <div id="meeting-calendar">
+            <%= render partial: "calendar", locals: { meetings: @meetings } %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
 
-  <tbody>
-    <% @meetings.each do |meeting| %>
-      <tr>
-        <td><%= meeting.name %></td>
-        <td><%= meeting.start_time %></td>
-        <td><%= meeting.end_time %></td>
-        <td><%= meeting.user_id %></td>
-        <td><%= link_to 'Show', meeting %></td>
-        <td><%= link_to 'Edit', edit_meeting_path(meeting) %></td>
-        <td><%= link_to 'Destroy', meeting, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Meeting', new_meeting_path %>
