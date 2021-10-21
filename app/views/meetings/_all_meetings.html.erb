@@ -1,0 +1,14 @@
+<% meetings.each do |meeting| %>
+  <div style="margin:1rem 0;">
+    <div style="margin:1rem 0;">
+      <%= link_to meeting.name, meeting %>
+    </div>
+    <div>
+      <%= readable_time(meeting.start_time) %>
+      <%= readable_time(meeting.end_time) %>
+    </div>
+    <div>
+      <%= link_to "Cancel Meeting", meeting, method: :delete, data: { confirm: "Are you sure to delete this meeting?" } %>          
+    </div>
+  </div>
+<% end %>
