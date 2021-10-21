@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :channels, through: :channel_users
   has_many :messages, dependent: :destroy
   has_many :meetings, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   def likes?(post)
     post.likes.where(user_id: id).any?
