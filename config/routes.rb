@@ -3,7 +3,9 @@ require 'sidekiq/web'
 Rails.application.routes.draw do
   root to: 'test_javascripts#index'
   
-  resources :meetings
+  resources :meetings do
+    resources :comments
+  end
   resources :fb_messages
   resources :channel_users
   resources :channels
