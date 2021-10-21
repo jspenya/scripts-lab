@@ -7,15 +7,15 @@
         <%= link_to 'New Meeting', new_meeting_path %>
       <% else %>
         <h1>Meetings</h1>
-        <ul class="nav nav-pills nav-fill">
+        <ul id="nav-tab" class="nav nav-pills nav-fill">
           <li class="nav-item">
-            <%= link_to '#all-meetings', class: 'nav-link active' do %>
-              All Meetings
+            <%= link_to '#calendar', class: 'tab nav-link active' do %>
+              Meeting Calendar
             <% end %>
           </li>
           <li class="nav-item">
-            <%= link_to '#calendar', class: 'nav-link' do %>
-              Meeting Calendar
+            <%= link_to '#all-meetings', class: 'tab nav-link' do %>
+              All Meetings
             <% end %>
           </li>
         </ul>
