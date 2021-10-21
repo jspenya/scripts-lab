@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_21_083555) do
+ActiveRecord::Schema.define(version: 2021_10_21_093545) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,13 +32,11 @@ ActiveRecord::Schema.define(version: 2021_10_21_083555) do
 
   create_table "comments", force: :cascade do |t|
     t.text "body"
-    t.bigint "meeting_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id", null: false
     t.string "commentable_type"
     t.integer "commentable_id"
-    t.index ["meeting_id"], name: "index_comments_on_meeting_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
@@ -103,7 +101,6 @@ ActiveRecord::Schema.define(version: 2021_10_21_083555) do
 
   add_foreign_key "channel_users", "channels"
   add_foreign_key "channel_users", "users"
-  add_foreign_key "comments", "meetings"
   add_foreign_key "comments", "users"
   add_foreign_key "likes", "posts"
   add_foreign_key "likes", "users"
