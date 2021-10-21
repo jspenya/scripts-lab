@@ -16,10 +16,16 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @comment = @meetings.comment.find(params[:id])
-    @comment.destroy
+    @comment = @commentable.comment.find(params[:id])
 
-    redirect_to @meeting
+    if @comment.save
+      respond_to do |format|
+        format.html { redirect_to @commentable }
+        format.js {  }
+      end
+    else
+      format.html { redirect_to @commentable, notice: "There was an error creating the comment." }
+    end
   end
 
   private
