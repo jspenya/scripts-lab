@@ -13,5 +13,17 @@
   <%= @meeting.end_time %>
 </p>
 
+<h4>Comments</h4>
+<% unless user_signed_in? %>
+  <%= link_to "Login", new_user_session_path() %>
+<% else %>
+  <%#= render partial: "comments/form" %>
+<% end %>
+
+<div id="comments">
+  <%#= render @meeting.comments %>
+</div>
+
+
 <%= link_to 'Edit', edit_meeting_path(@meeting) %> |
 <%= link_to 'Back', meetings_path %>
