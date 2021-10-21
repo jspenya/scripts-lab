@@ -9,7 +9,7 @@ class MeetingsController < ApplicationController
 
   # GET /meetings/1 or /meetings/1.json
   def show
-    
+    @comments = Comment.new
   end
 
   # GET /meetings/new
