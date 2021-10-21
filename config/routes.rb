@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   root to: 'test_javascripts#index'
   
   resources :meetings do
-    resources :comments
+    resources :comments, module: :meetings
   end
   resources :fb_messages
   resources :channel_users

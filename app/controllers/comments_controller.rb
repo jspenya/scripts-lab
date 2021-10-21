@@ -1,20 +1,17 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_comment, only[:create, :destroy]
-  before_action :set_meeting
-
-  def new
-    @comment = Comment.new
-  end
 
   def create
-    @comment = @meetings.comments.create(comment_params)
+    @comment = @commentable.comments.new(comment_params)
     @comment.user_id = current_user.id
-    @comment.save
 
-    respond_to do |format|
-      format.html { redirect_to @meeting }
-      format.js
+    if @comment.save
+      respond_to do |format|
+        format.html { redirect_to @commentable }
+        format.js {  }
+      end
+    else
+      format.html { redirect_to @commentable, notice: "There was an error creating the comment." }
     end
   end
 
