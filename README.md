@@ -15,4 +15,5 @@ I am using <strong>Rails 6 with Webpacker (4.0)</strong> (instead of the usual a
 - Facebook Messenger Bot Implementation (No gems // well, only the HTTP gem for api requests)
 - Channels/Chatrooms *Live* with ActionCable (on-going development)
 - Scheduling App (on-going development)
+- Polymorphic Comments to Meetings (Scheduling App model)
 - 
