@@ -42,3 +42,6 @@ import "../stylesheets/application"
 
 require("packs/posts")
 require("packs/meetings")
+
+require("trix")
+require("@rails/actiontext")
