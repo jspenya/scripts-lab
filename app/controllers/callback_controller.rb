@@ -2,7 +2,7 @@ class CallbackController < ApplicationController
   protect_from_forgery with: :null_session
 
   def index
-    if params["hub.verify_token"] == "54c6f36e0f283fd0bfd1beb9aa481dd8"
+    if params["hub.verify_token"] == Rails.application.credentials.facebook_verify_token
       render json: params["hub.challenge"]
     end
   end
@@ -23,9 +23,9 @@ class CallbackController < ApplicationController
         Rails.logger.info("+++++++++++++++++++++++++")
         Rails.logger.info(messaging)
         Rails.logger.info("+++++++++++++++++++++++++")
-        analysis(sender, text)
-        # myjson = {"recipient": {"id": "#{sender}"},"message": {"text": "#{text}\n\nTime is: #{Time.now.strftime('%I:%M:%S %p')}"}}
-        # puts HTTP.post(url, json: myjson)
+        # analysis(sender, text)
+        myjson = {"recipient": {"id": "#{sender}"},"message": {"text": "#{text}\n\nTime is: #{Time.now.strftime('%I:%M:%S %p')}"}}
+        puts HTTP.post(url, json: myjson)
       end
     end
   end
@@ -45,5 +45,6 @@ class CallbackController < ApplicationController
     puts HTTP.post(url, json: myjson)
   end
   def url
-    "https://graph.facebook.com/v12.0/me/messages?access_token=#{ENV["ACCESS_TOKEN"]}
+    "https://graph.facebook.com/v12.0/me/messages?access_token=#{Rails.application.credentials.facebook_access_token}"
+  end
 end
