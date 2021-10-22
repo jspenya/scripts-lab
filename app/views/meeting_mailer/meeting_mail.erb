@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+	</head>
+	<body>
+		<h1>Hello <%= @user.email %>,</h1>
+		<p>
+			Congrats! You are confirmed to attend this meeting. The details are below.
+		</p>
+		<p>
+			<%= @meeting.name %> will begin on <%= readable_time(@meeting.start_time) %> and end on <%= readable_time(@meeting.end_time) %>.
+		</p>
+	</body>
+</html>
