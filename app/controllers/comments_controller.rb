@@ -16,15 +16,15 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @comment = @commentable.comment.find(params[:id])
+    @comment = @commentable.comments.find(params[:id])
 
-    if @comment.save
+    if @comment.destroy
       respond_to do |format|
         format.html { redirect_to @commentable }
         format.js {  }
       end
     else
-      format.html { redirect_to @commentable, notice: "There was an error creating the comment." }
+      format.html { redirect_to @commentable, notice: "There was an error deleting the comment." }
     end
   end
 

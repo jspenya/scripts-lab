@@ -5,6 +5,9 @@
       <%= raw(comment.body) %>
       <p style="font-size:0.6rem;margin:0;float:right;">
         - <%= comment.user.email %>
+        <% if author_of(comment) %>
+          <%= content_tag :span, link_to("Delete Comment", [commentable, comment], method: :delete, remote: true, data: { confirm: "Are you sure?" }), class: "edit-delete-line" %>
+        <% end %>
       </p>
     </div>
   <% end %>
