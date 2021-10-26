@@ -3,7 +3,7 @@ class MessagesController < ApplicationController
 
   def create
     receipt = current_user.reply_to_conversation(@conversation, body)
-    redirect_to receipt.conversation
+    redirect_to conversation_path(receipt.conversation)
   end
 
   private
