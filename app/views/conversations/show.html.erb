@@ -1,0 +1,12 @@
+<h1><%= @conversation.subject %></h1>
+
+<% @conversation.receipts_for(current_user).each do |receipt| %>
+  <div>
+    <div>
+      <%= receipt.message.body %>
+    </div>
+    <div>
+      From: <%= receipt.message.sender.email %>
+    </div>
+  </div>
+<% end %>
