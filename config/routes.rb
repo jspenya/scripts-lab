@@ -2,6 +2,10 @@ require 'sidekiq/web'
 
 Rails.application.routes.draw do
   root to: 'test_javascripts#index'
+
+  resources :conversations do
+   resources :messages
+  end
   
   resources :meetings do
     resources :comments, module: :meetings
