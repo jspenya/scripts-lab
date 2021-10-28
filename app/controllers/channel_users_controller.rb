@@ -1,5 +1,6 @@
 class ChannelUsersController < ApplicationController
-  before_action :set_channel_user, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!
+  before_action :set_channel
 
   # GET /channel_users or /channel_users.json
   def index
@@ -21,17 +22,8 @@ class ChannelUsersController < ApplicationController
 
   # POST /channel_users or /channel_users.json
   def create
-    @channel_user = ChannelUser.new(channel_user_params)
-
-    respond_to do |format|
-      if @channel_user.save
-        format.html { redirect_to @channel_user, notice: "Channel user was successfully created." }
-        format.json { render :show, status: :created, location: @channel_user }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @channel_user.errors, status: :unprocessable_entity }
-      end
-    end
+    @channel.channel_users.where(user: current_user).first_or_create!
+    redirect_to @channel
   end
 
   # PATCH/PUT /channel_users/1 or /channel_users/1.json
@@ -49,21 +41,12 @@ class ChannelUsersController < ApplicationController
 
   # DELETE /channel_users/1 or /channel_users/1.json
   def destroy
-    @channel_user.destroy
-    respond_to do |format|
-      format.html { redirect_to channel_users_url, notice: "Channel user was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    @channel.channel_users.where(user: current_user).destroy_all
+    redirect_to @channel
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_channel_user
-      @channel_user = ChannelUser.find(params[:id])
-    end
-
-    # Only allow a list of trusted parameters through.
-    def channel_user_params
-      params.require(:channel_user).permit(:channel_id, :user_id)
-    end
+  def set_channel
+    @channel = Channel.find(params[:channel_id])
+  end
 end
