@@ -2,7 +2,27 @@
   <div class="col-sm-2">
     <div class="d-flex justify-content-between">
     <h6>Channels</h6>
-      
+    <%= link_to "Create a new channel", new_channel_path %>
     </div>
+    <% Channel.all.each do |channel| %>
+     <%= link_to channel.name, channel %>
+     <% if current_user.channels.include?(channel) %>
+      <%= link_to "Leave channel", channel_channel_user_path(channel), method: :delete %>
+     <% end %>
+    <% end %>
+    <hr/>
+
+    <% channel.users.each do |user| %>
+      <div>
+        <%= user.name %>
+      </div>
+    <% end %>
+  </div>
+  <div class="col-sm-10">
+    <% if current_user.channels.include?(channel) %>
+      
+    <% else %>
+      <%= link_to "Join #{channel.name}", channel_channel_user_path(channel), method: :post %>
+    <% end %>
   </div>
 </div>
