@@ -12,7 +12,9 @@ Rails.application.routes.draw do
   end
   resources :fb_messages
   resources :channel_users
-  resources :channels
+  resources :channels do
+    resource :channel_user
+  end
   devise_for :users
   
   resources :posts do
