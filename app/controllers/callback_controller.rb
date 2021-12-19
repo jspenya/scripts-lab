@@ -1,8 +1,9 @@
 class CallbackController < ApplicationController
   protect_from_forgery with: :null_session
+  require 'dino'
 
   def index
-    if params["hub.verify_token"] == Rails.application.credentials.facebook_verify_token
+    if params["hub.verify_token"] == "asd"
       render json: params["hub.challenge"]
     end
   end
@@ -12,6 +13,29 @@ class CallbackController < ApplicationController
     data = JSON.parse(therequest)
     parse_data(data)
     render "received_data"
+  end
+
+  def light_up_led text
+    board = Dino::Board.new(Dino::TxRx.new)
+    led = Dino::Components::Led.new(pin: 13, board: board)
+    
+    if text.include? "gay"
+      led.send(:on)
+      sleep 0.5
+      led.send(:off)
+      sleep 0.5
+      led.send(:on)
+      sleep 0.5
+      led.send(:off)
+    elsif text.include? "no"
+      led.send(:on)
+      sleep 0.5
+      led.send(:off)
+    else
+      led.send(:on)
+      sleep 0.5
+      led.send(:off)
+    end
   end
 
   def parse_data(data)
@@ -26,6 +50,8 @@ class CallbackController < ApplicationController
         # analysis(sender, text)
         myjson = {"recipient": {"id": "#{sender}"},"message": {"text": "#{text}\n\nTime is: #{Time.now.strftime('%I:%M:%S %p')}"}}
         puts HTTP.post(url, json: myjson)
+
+        light_up_led(text)
       end
     end
   end
@@ -44,7 +70,8 @@ class CallbackController < ApplicationController
     myjson = {"recipient": {"id": "#{sender}"},"message": {"text": "#{text}"}}
     puts HTTP.post(url, json: myjson)
   end
+
   def url
-    "https://graph.facebook.com/v12.0/me/messages?access_token=#{Rails.application.credentials.facebook_access_token}"
+    "https://graph.facebook.com/v12.0/me/messages?access_token=x"
   end
 end
