@@ -84,6 +84,8 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    dino (0.11.2)
+      serialport
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
     dotenv (2.7.6)
@@ -211,6 +213,7 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
+    serialport (1.3.2)
     sidekiq (6.0.7)
       connection_pool (>= 2.2.2)
       rack (~> 2.0)
@@ -270,6 +273,7 @@ DEPENDENCIES
   bootsnap (>= 1.4.2)
   byebug
   devise
+  dino (~> 0.11.2)
   dotenv-rails
   facebook-messenger
   http
