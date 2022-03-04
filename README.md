@@ -16,4 +16,4 @@ I am using <strong>Rails 6 with Webpacker (4.0)</strong> (instead of the usual a
 - Channels/Chatrooms *Live* with ActionCable (on-going development)
 - Scheduling App (on-going development)
 - Polymorphic Comments to Meetings (Scheduling App model)
-- 
+- Facebook Messenger Chat API hooks to Arduino
